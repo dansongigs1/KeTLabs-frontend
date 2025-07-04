@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeTLabs - Kenya Test Lab Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a5f23;
+            --secondary: #e8a317;
+            --accent: #0d4d6d;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #2e8b57);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            animation: pulse 2s infinite;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:hover {
+            background: #ffb62d;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581094794329-ef0a43f0a46a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .secondary-button:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            min-height: 70px;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .service-meta div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-content {
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+
+        .video-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .video-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--light);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-column p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTkgMjFINTNjLjU1IDAgMS0uNDUgMS0xVjRjMC0uNTUtLjQ1LTEtMS0xSDRjLS41NSAwLTEgLjQ1LTEgMXYxNmMwIC41NS40NSAxIDEgMWg0bDMtMyA0IDQgNC00IDQgNHptMC0xM3Y2bC00LTMuOTlMMTUgMTRsLTQtNC00IDQtNy03aDE0eiIvPjwvc3ZnPg==" alt="KeTLabs Logo">
+                <h1>Ke<span>TLabs</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#services"><i class="fas fa-flask"></i> Services</a></li>
+                    <li><a href="#"><i class="fas fa-certificate"></i> Certifications</a></li>
+                    <li><a href="#"><i class="fas fa-industry"></i> Industries</a></li>
+                    <li><a href="#"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button"><i class="fas fa-user"></i> Client Portal</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Kenya's Premier Testing & Certification Laboratory</h2>
+            <p>Accredited testing services for quality assurance and regulatory compliance. Serving industries across Kenya with precision and expertise.</p>
+            <div class="hero-buttons">
+                <button class="cta-button" id="browseBtn"><i class="fas fa-search"></i> Browse Services</button>
+                <button class="secondary-button" id="quoteBtn"><i class="fas fa-envelope"></i> Request Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Laboratory Testing Services</h2>
+                <p>Explore our comprehensive range of accredited testing and certification services tailored for Kenyan industries</p>
+            </div>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Service cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/9YffrCViTVk" title="Laboratory Testing" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-content">
+                <h2>Our State-of-the-Art Laboratory</h2>
+                <p>Take a virtual tour of our KEBS-accredited facilities equipped with cutting-edge technology for precise testing and analysis. Our Nairobi-based laboratory serves clients throughout Kenya with reliable and efficient testing services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-text">Testing Services</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="stat-number">15</div>
+                    <div class="stat-text">Industries Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="stat-number">8</div>
+                    <div class="stat-text">Accreditations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="stat-number">65+</div>
+                    <div class="stat-text">Technical Experts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About KeTLabs</h3>
+                    <p>Kenya Test Lab Service is a premier testing and certification laboratory serving businesses across Kenya with accredited testing services for quality assurance and regulatory compliance.</p>
+                    <div class="social-icons">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Food Testing & Safety</a></li>
+                        <li><a href="#">Water Quality Analysis</a></li>
+                        <li><a href="#">Construction Materials</a></li>
+                        <li><a href="#">Textile & Apparel</a></li>
+                        <li><a href="#">Electronics Testing</a></li>
+                        <li><a href="#">Chemical Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services Catalog</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Accreditations</a></li>
+                        <li><a href="#">Industry Solutions</a></li>
+                        <li><a href="#">Client Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Industrial Area, Nairobi, Kenya</li>
+                        <li><i class="fas fa-phone"></i> +254 700 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@ketlabs.co.ke</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</li>
+                        <li><i class="fas fa-calendar"></i> Sat: 9:00 AM - 1:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 KeTLabs - Kenya Test Lab Service. All rights reserved. | KEBS Accredited Laboratory</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Quote Request -->
+    <div class="modal" id="quoteModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeQuote">&times;</span>
+            <h2>Request a Quote</h2>
+            <form id="quoteForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interested In</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="food">Food Safety & Quality Testing</option>
+                        <option value="water">Water Quality Analysis</option>
+                        <option value="construction">Construction Materials Testing</option>
+                        <option value="textile">Textile & Apparel Testing</option>
+                        <option value="electronics">Electronics & Electrical Testing</option>
+                        <option value="chemical">Chemical Composition Analysis</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Order Confirmation -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeOrder">&times;</span>
+            <h2>Order Service</h2>
+            <div id="orderDetails"></div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="orderName">Full Name</label>
+                    <input type="text" id="orderName" name="orderName" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderEmail">Email</label>
+                    <input type="email" id="orderEmail" name="orderEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderPhone">Phone</label>
+                    <input type="tel" id="orderPhone" name="orderPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="orderCompany">Company</label>
+                    <input type="text" id="orderCompany" name="orderCompany">
+                </div>
+                <div class="form-group">
+                    <label for="orderNotes">Special Instructions</label>
+                    <textarea id="orderNotes" name="orderNotes"></textarea>
+                </div>
+                <button type="submit" class="cta-button">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Service data - in a real app, this would come from a database
+        const services = [
+            {
+                id: 1,
+                name: "Food Safety & Quality Testing",
+                description: "Comprehensive analysis for contaminants, nutritional content, and shelf-life determination.",
+                price: "8,500",
+                image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "3-5 days",
+                tests: 12,
+                badge: "Popular"
+            },
+            {
+                id: 2,
+                name: "Water Quality Analysis",
+                description: "Complete potability testing for drinking water, wastewater, and industrial effluents.",
+                price: "12,000",
+                image: "https://images.unsplash.com/photo-1581092918056-0c4c1d1d5a9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "2-4 days",
+                tests: 18
+            },
+            {
+                id: 3,
+                name: "Construction Materials Testing",
+                description: "Testing for cement, concrete, steel, aggregates and other building materials.",
+                price: "7,200",
+                image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "5-7 days",
+                tests: 8
+            },
+            {
+                id: 4,
+                name: "Textile & Apparel Testing",
+                description: "Fabric strength, colorfastness, fiber content, and flammability testing.",
+                price: "9,800",
+                image: "https://images.unsplash.com/photo-1581092921461-7d5609f2b5e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "4-6 days",
+                tests: 10
+            },
+            {
+                id: 5,
+                name: "Electronics & Electrical Testing",
+                description: "Safety, EMC, and performance testing for electronic devices and components.",
+                price: "15,000",
+                image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "7-10 days",
+                tests: 6
+            },
+            {
+                id: 6,
+                name: "Chemical Composition Analysis",
+                description: "Precise identification of chemical components in various materials and products.",
+                price: "18,500",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                duration: "5-8 days",
+                tests: 15
+            }
+        ];
+
+        // DOM Elements
+        const servicesGrid = document.getElementById('servicesGrid');
+        const quoteModal = document.getElementById('quoteModal');
+        const orderModal = document.getElementById('orderModal');
+        const quoteBtn = document.getElementById('quoteBtn');
+        const closeQuote = document.getElementById('closeQuote');
+        const closeOrder = document.getElementById('closeOrder');
+        const quoteForm = document.getElementById('quoteForm');
+        const orderForm = document.getElementById('orderForm');
+        const orderDetails = document.getElementById('orderDetails');
+        let currentService = null;
+
+        // Render services
+        function renderServices() {
+            servicesGrid.innerHTML = '';
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                serviceCard.innerHTML = `
+                    <div class="service-image">
+                        <img src="${service.image}" alt="${service.name}">
+                        ${service.badge ? `<div class="service-badge">${service.badge}</div>` : ''}
+                    </div>
+                    <div class="service-content">
+                        <h3>${service.name}</h3>
+                        <p>${service.description}</p>
+                        <div class="service-price">From KES ${service.price}</div>
+                        <button class="cta-button order-btn" data-id="${service.id}">Order Service</button>
+                        <div class="service-meta">
+                            <div><i class="far fa-clock"></i> ${service.duration}</div>
+                            <div><i class="fas fa-vial"></i> ${service.tests} tests</div>
+                        </div>
+                    </div>
+                `;
+                servicesGrid.appendChild(serviceCard);
+            });
+
+            // Add event listeners to order buttons
+            document.querySelectorAll('.order-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const serviceId = parseInt(e.target.getAttribute('data-id'));
+                    currentService = services.find(s => s.id === serviceId);
+                    showOrderModal();
+                });
+            });
+        }
+
+        // Show quote modal
+        function showQuoteModal() {
+            quoteModal.style.display = 'flex';
+        }
+
+        // Show order modal
+        function showOrderModal() {
+            if (currentService) {
+                orderDetails.innerHTML = `
+                    <h3>${currentService.name}</h3>
+                    <p>${currentService.description}</p>
+                    <p><strong>Price:</strong> KES ${currentService.price}</p>
+                    <p><strong>Duration:</strong> ${currentService.duration}</p>
+                    <p><strong>Tests Included:</strong> ${currentService.tests}</p>
+                    <hr style="margin: 20px 0;">
+                `;
+                orderModal.style.display = 'flex';
+            }
+        }
+
+        // Close modals
+        function closeModals() {
+            quoteModal.style.display = 'none';
+            orderModal.style.display = 'none';
+        }
+
+        // Event listeners
+        quoteBtn.addEventListener('click', showQuoteModal);
+        closeQuote.addEventListener('click', closeModals);
+        closeOrder.addEventListener('click', closeModals);
+
+        // Close modal when clicking outside content
+        window.addEventListener('click', (e) => {
+            if (e.target === quoteModal || e.target === orderModal) {
+                closeModals();
+            }
+        });
+
+        // Form submissions
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Form data would be sent to server in a real app
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Simulate form submission
+            console.log('Quote Request Submitted:', formData);
+            alert('Thank you! Your quote request has been submitted. We will contact you shortly.');
+            quoteForm.reset();
+            closeModals();
+        });
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Form data would be sent to server in a real app
+            const formData = {
+                service: currentService.name,
+                name: document.getElementById('orderName').value,
+                email: document.getElementById('orderEmail').value,
+                phone: document.getElementById('orderPhone').value,
+                company: document.getElementById('orderCompany').value,
+                notes: document.getElementById('orderNotes').value
+            };
+            
+            // Simulate form submission
+            console.log('Order Submitted:', formData);
+            alert(`Thank you! Your order for ${currentService.name} has been placed. Order confirmation has been sent to your email.`);
+            orderForm.reset();
+            closeModals();
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            // Animate cards when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.6s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            serviceCards.forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Add hover effect to all buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
